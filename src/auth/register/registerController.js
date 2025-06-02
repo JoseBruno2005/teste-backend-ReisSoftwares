@@ -1,16 +1,13 @@
 import registerService from "../register/registerService.js";
+import createUserDto from "../../DTO/userDTO/createUserDto.js";
 
 export default async function registerController(req, res) {
     try{
         const user = req.body;
 
-        const userData = {
-            name: user.name,
-            email: user.email,
-            password: user.password,
-        }
+        const userDto = await createUserDto(user);
 
-        const userReturn = await registerService(userData);
+        const userReturn = await registerService(userDto);
 
         res.status(201).json(
             {

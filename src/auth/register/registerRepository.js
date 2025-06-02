@@ -1,8 +1,9 @@
 import { PrismaClient } from "@prisma/client";
+import returnUserDto from "../../DTO/userDTO/returnUserDto";
 
 const prisma = new PrismaClient();
 
-async function createUser(userData) {
+async function registerUser(userData) {
     try {
         const user = await prisma.user.create({
             data: {
@@ -12,10 +13,12 @@ async function createUser(userData) {
             }
         });
 
-        return user;
+        const userDto = returnUserDto(user);
+
+        return userDto;
     } catch (error) {
-        throw new Error("Erro ao cadastrar o usuario: ", error);
+        throw new Error("Erro ao cadastrar o usuário: " + error.message);
     }
 }
 
-export { createUser };
+export { registerUser };
