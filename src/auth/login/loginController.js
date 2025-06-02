@@ -4,7 +4,6 @@ import loginUserDto from "../../DTO/userDTO/loginUserDto.js";
 export default async function loginController(req, res) {
     
     try{
-        console.log(req.body)
         const userDto = loginUserDto(req.body)
 
         const token = await loginService(userDto.email, userDto.password);
