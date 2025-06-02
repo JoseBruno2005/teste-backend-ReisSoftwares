@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import returnUserDto from "../../DTO/userDTO/returnUserDto";
+import returnUserDto from "../../DTO/userDTO/returnUserDto.js";
 
 const prisma = new PrismaClient();
 
