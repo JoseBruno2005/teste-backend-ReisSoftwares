@@ -42,6 +42,22 @@ async function listTasksRepository(){
     }
 }
 
+async function findTaskByIdRepository(taskId){
+    try{
+
+        const foundTask = await prisma.task.findFirst({
+            where: {id: taskId}
+        });
+
+        const taskDto = returnTaskDto(foundTask);
+
+        return taskDto;
+
+    }catch(error){
+        throw new Error("Error findTaskByIdRepository: " + error)
+    }
+}
+
 async function deleteTaskRepository(taskId) {
     try{
 
@@ -60,4 +76,4 @@ async function deleteTaskRepository(taskId) {
     }
 }
 
-export { createTaskRepository, listTasksRepository, deleteTaskRepository }
+export { createTaskRepository, listTasksRepository, deleteTaskRepository, findTaskByIdRepository }

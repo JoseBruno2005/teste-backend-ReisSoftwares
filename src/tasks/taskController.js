@@ -1,5 +1,5 @@
 import createTaskDto from "../DTO/taskDTO/createTaskDto.js"
-import { createTaskService, deleteTaskService, listTasksService } from "./taskService.js";
+import { createTaskService, deleteTaskService, findTaskByIdService, listTasksService } from "./taskService.js";
 
 async function createTaskController(req, res) {
     try{
@@ -36,6 +36,26 @@ async function listTasksController(req, res) {
     }
 }
 
+async function findTaskByIdController(req, res) {
+    try{
+
+        const {id} = req.params;
+        console.log(id)
+
+        const tasksDto = await findTaskByIdService(id); 
+
+        res.status(200).json({
+            message: "Tarefa encontrada:",
+            task: tasksDto 
+        })
+    }catch(error){
+        console.error(error)
+        res.status(400).json({
+            message: "Erro ao buscar tarefa" + error.message
+        })
+    }
+}
+
 async function deleteTasksController(req, res) {
     try{
 
@@ -54,4 +74,4 @@ async function deleteTasksController(req, res) {
     }
 }
 
-export {createTaskController, listTasksController, deleteTasksController}
+export {createTaskController, listTasksController, deleteTasksController, findTaskByIdController}
