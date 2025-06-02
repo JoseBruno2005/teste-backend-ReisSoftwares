@@ -42,4 +42,22 @@ async function listTasksRepository(){
     }
 }
 
-export { createTaskRepository, listTasksRepository }
+async function deleteTaskRepository(taskId) {
+    try{
+
+        const deletedTasks = await prisma.task.delete({
+            where: {
+                id: taskId
+            }
+        });
+
+        const taskDto = returnTaskDto(deletedTasks);
+
+        return taskDto;
+
+    }catch(error){
+        throw new Error("Error deleteTaskRepository: " + error)
+    }
+}
+
+export { createTaskRepository, listTasksRepository, deleteTaskRepository }
