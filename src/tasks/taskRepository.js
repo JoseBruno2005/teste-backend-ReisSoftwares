@@ -26,4 +26,20 @@ async function createTaskRepository(taskData) {
     }
 }
 
-export { createTaskRepository }
+async function listTasksRepository(){
+    try{
+
+        const listTasks = await prisma.task.findMany();
+
+        const listTasksDtos = listTasks.map(task => {
+            return returnTaskDto(task)
+        });
+
+        return listTasksDtos;
+
+    }catch(error){
+        throw new Error("Error listTasksRepository: " + error)
+    }
+}
+
+export { createTaskRepository, listTasksRepository }

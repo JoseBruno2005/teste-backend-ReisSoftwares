@@ -1,4 +1,4 @@
-import { createTaskRepository } from "./taskRepository.js";
+import { createTaskRepository, listTasksRepository } from "./taskRepository.js";
 
 async function createTaskService(taskDto) {
     try{
@@ -9,4 +9,13 @@ async function createTaskService(taskDto) {
     }
 }
 
-export {createTaskService}
+async function listTasksService() {
+    try{
+        return await listTasksRepository();
+    }catch(error){
+        console.log(error)
+        throw new Error("Erro listTasksService: " + error.message)
+    }
+}
+
+export {createTaskService, listTasksService}
