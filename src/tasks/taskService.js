@@ -1,4 +1,4 @@
-import { createTaskRepository } from "./taskRepository";
+import { createTaskRepository } from "./taskRepository.js";
 
 async function createTaskService(taskDto) {
     try{

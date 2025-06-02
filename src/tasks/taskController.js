@@ -1,5 +1,5 @@
-import createTaskDto from "../DTO/taskDTO/createTaskDto"
-import { createTaskService } from "./taskService";
+import createTaskDto from "../DTO/taskDTO/createTaskDto.js"
+import { createTaskService } from "./taskService.js";
 
 async function createTaskController(req, res) {
     try{
