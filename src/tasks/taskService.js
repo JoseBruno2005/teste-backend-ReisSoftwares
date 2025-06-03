@@ -1,4 +1,4 @@
-import { createTaskRepository, deleteTaskRepository, findTaskByIdRepository, listTasksRepository } from "./taskRepository.js";
+import { createTaskRepository, deleteTaskRepository, findTaskByIdRepository, findTaskByStatusRepository, listTasksRepository } from "./taskRepository.js";
 
 async function createTaskService(taskDto) {
     try{
@@ -27,6 +27,15 @@ async function findTaskByIdService(taskId) {
     }
 }
 
+async function findTaskByStatusService(status) {
+    try{
+        return await findTaskByStatusRepository(status);
+    }catch(error){
+        console.log(error)
+        throw new Error("Erro findTaskByStatusService: " + error.message)
+    }
+}
+
 async function deleteTaskService(taskId) {
     try{
         return await deleteTaskRepository(taskId);
@@ -36,4 +45,5 @@ async function deleteTaskService(taskId) {
     }
 }
 
-export {createTaskService, listTasksService, deleteTaskService, findTaskByIdService}
+export {createTaskService, listTasksService, deleteTaskService, 
+    findTaskByIdService, findTaskByStatusService}

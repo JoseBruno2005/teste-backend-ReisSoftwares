@@ -1,5 +1,5 @@
 import createTaskDto from "../DTO/taskDTO/createTaskDto.js"
-import { createTaskService, deleteTaskService, findTaskByIdService, listTasksService } from "./taskService.js";
+import { createTaskService, deleteTaskService, findTaskByIdService, listTasksService, findTaskByStatusService } from "./taskService.js";
 
 async function createTaskController(req, res) {
     try{
@@ -20,27 +20,10 @@ async function createTaskController(req, res) {
     }
 }
 
-async function listTasksController(req, res) {
-    try{
-
-        const listTasksDtos = await listTasksService(); 
-
-        res.status(200).json({
-            message: "Tarefas encontradas:",
-            list: listTasksDtos
-        })
-    }catch(error){
-        res.status(400).json({
-            message: "Erro ao buscar tarefas" + error.message
-        })
-    }
-}
-
 async function findTaskByIdController(req, res) {
     try{
 
         const {id} = req.params;
-        console.log(id)
 
         const tasksDto = await findTaskByIdService(id); 
 
@@ -52,6 +35,32 @@ async function findTaskByIdController(req, res) {
         console.error(error)
         res.status(400).json({
             message: "Erro ao buscar tarefa" + error.message
+        })
+    }
+}
+
+async function findTaskByStatusController(req, res) {
+    try{
+
+        const {status} = req.query;
+
+        let listTasksDtos;
+
+        if(!status){
+            listTasksDtos = await listTasksService();
+        }else{
+            listTasksDtos = await findTaskByStatusService(status);
+        }
+
+        res.status(200).json({
+            message: "Tarefas encontradas:",
+            listTasks: listTasksDtos 
+        })
+
+    }catch(error){
+        console.error(error)
+        res.status(400).json({
+            message: "Erro ao buscar tarefas" + error.message
         })
     }
 }
@@ -74,4 +83,5 @@ async function deleteTasksController(req, res) {
     }
 }
 
-export {createTaskController, listTasksController, deleteTasksController, findTaskByIdController}
+export {createTaskController, deleteTasksController, 
+    findTaskByIdController, findTaskByStatusController}

@@ -58,6 +58,24 @@ async function findTaskByIdRepository(taskId){
     }
 }
 
+async function findTaskByStatusRepository(taskStatus) {
+    try{
+
+        const listTask = await prisma.task.findMany({
+            where: {status: taskStatus}
+        });
+
+        const listTasksDtos = listTask.map(task => {
+            return returnTaskDto(task);
+        });
+
+        return listTasksDtos;
+
+    }catch(error){
+        throw new Error("Error findTaskByStatusRepository: " + error)
+    }
+}
+
 async function deleteTaskRepository(taskId) {
     try{
 
@@ -76,4 +94,5 @@ async function deleteTaskRepository(taskId) {
     }
 }
 
-export { createTaskRepository, listTasksRepository, deleteTaskRepository, findTaskByIdRepository }
+export { createTaskRepository, listTasksRepository, deleteTaskRepository, 
+    findTaskByIdRepository, findTaskByStatusRepository }
