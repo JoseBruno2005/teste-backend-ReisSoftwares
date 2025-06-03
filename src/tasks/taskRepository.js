@@ -76,6 +76,22 @@ async function findTaskByStatusRepository(taskStatus) {
     }
 }
 
+async function updateTaskRepository(id, taskData) {
+    try{
+        const updatedTask = await prisma.task.update({
+            where: {id: id},
+            data: {...taskData}
+        })
+
+        const updatedTaskDto = returnTaskDto(updatedTask);
+
+        return updatedTaskDto;
+
+    }catch(error){
+        throw new Error("Error updateTaskRepository: " + error)
+    }
+}
+
 async function deleteTaskRepository(taskId) {
     try{
 
@@ -95,4 +111,4 @@ async function deleteTaskRepository(taskId) {
 }
 
 export { createTaskRepository, listTasksRepository, deleteTaskRepository, 
-    findTaskByIdRepository, findTaskByStatusRepository }
+    findTaskByIdRepository, findTaskByStatusRepository, updateTaskRepository }

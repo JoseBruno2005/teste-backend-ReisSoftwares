@@ -1,5 +1,5 @@
 import createTaskDto from "../DTO/taskDTO/createTaskDto.js"
-import { createTaskService, deleteTaskService, findTaskByIdService, listTasksService, findTaskByStatusService } from "./taskService.js";
+import { createTaskService, deleteTaskService, findTaskByIdService, listTasksService, findTaskByStatusService, updateTaskService } from "./taskService.js";
 
 async function createTaskController(req, res) {
     try{
@@ -65,6 +65,27 @@ async function findTaskByStatusController(req, res) {
     }
 }
 
+async function updateTaskController(req, res) {
+    try{
+
+        const {id} = req.params;
+        const taskData = req.body;
+
+        const updatedTaskDto = await updateTaskService(id, taskData)
+
+        res.status(200).json({
+            message: "Tarefa atualizada:",
+            update: updatedTaskDto 
+        })
+
+    }catch(error){
+        console.error(error)
+        res.status(400).json({
+            message: "Erro ao atualizar tarefa" + error.message
+        })
+    }
+}
+
 async function deleteTasksController(req, res) {
     try{
 
@@ -84,4 +105,4 @@ async function deleteTasksController(req, res) {
 }
 
 export {createTaskController, deleteTasksController, 
-    findTaskByIdController, findTaskByStatusController}
+    findTaskByIdController, findTaskByStatusController, updateTaskController}
