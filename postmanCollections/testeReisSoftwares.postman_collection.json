@@ -1,0 +1,189 @@
+{
+	"info": {
+		"_postman_id": "93edd9b9-dd65-4b36-810c-181d841aa634",
+		"name": "testeReisSoftwares",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26689952"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Cadastro",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Reis\",\r\n    \"email\": \"reis@softwares.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Task",
+			"item": [
+				{
+					"name": "CreateTask",
+					"request": {
+						"method": "POST",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "BuscarTarefas",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZWQzZDhjOC0wNWQ3LTRlMGYtOWQ4Zi1hOGE3ZGJmZTNiNzQiLCJpYXQiOjE3NDg4OTA0NjYsImV4cCI6MTc0ODg5NDA2Nn0.jOX5gElAkXJp4hhouitTQUV21XrrsHIWJS3SIhNOVgI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/task",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"task"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteTask",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZWQzZDhjOC0wNWQ3LTRlMGYtOWQ4Zi1hOGE3ZGJmZTNiNzQiLCJpYXQiOjE3NDg4OTA0NjYsImV4cCI6MTc0ODg5NDA2Nn0.jOX5gElAkXJp4hhouitTQUV21XrrsHIWJS3SIhNOVgI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/task",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"task"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BuscarTaskPorId",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "BuscarTarefasPorStatus",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZWQzZDhjOC0wNWQ3LTRlMGYtOWQ4Zi1hOGE3ZGJmZTNiNzQiLCJpYXQiOjE3NDg5NTE4MTEsImV4cCI6MTc0ODk1NTQxMX0.TkCCDGjAKcctepoF_mbc45-_Vj8nAXl84K31M7DTYPU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/task?status=completed",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"task"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "completed"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AtualizarTarefa",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZWQzZDhjOC0wNWQ3LTRlMGYtOWQ4Zi1hOGE3ZGJmZTNiNzQiLCJpYXQiOjE3NDg5NjMwNzgsImV4cCI6MTc0ODk2NjY3OH0.8nHTGST3HPqA6wFx9WVHUySi9OkCE_VWFsVtfj66spQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"pending\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/task/b24cff9f-1aba-4ae2-8bf3-80d47edc0648",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"task",
+								"b24cff9f-1aba-4ae2-8bf3-80d47edc0648"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

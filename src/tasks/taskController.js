@@ -1,14 +1,23 @@
 import createTaskDto from "../DTO/taskDTO/createTaskDto.js"
+import returnTaskDto from "../DTO/taskDTO/returnTaskDto.js";
 import { createTaskService, deleteTaskService, findTaskByIdService, listTasksService, findTaskByStatusService, updateTaskService } from "./taskService.js";
 
 async function createTaskController(req, res) {
     try{
 
-        const taskDto = createTaskDto(req.body);
+        const taskData = {
+            title: req.body.title,
+            description: req.body.description,
+            status: req.body.status,
+            dueDate: req.body.dueDate,
+            userId: req.user.userId
+        }
+
+        const taskDto = createTaskDto(taskData);
 
         const taskCreated = await createTaskService(taskDto);
 
-        return res.status(200).json({
+        return res.status(201).json({
             message: "Tarefa criada com sucesso!",
             taskCreated: taskCreated
         })
@@ -69,9 +78,16 @@ async function updateTaskController(req, res) {
     try{
 
         const {id} = req.params;
-        const taskData = req.body;
 
-        const updatedTaskDto = await updateTaskService(id, taskData)
+        const taskData = {
+            title: req.body.title,
+            description: req.body.description,
+            status: req.body.status,
+            dueDate: req.body.dueDate,
+            userId: req.user.userId
+        }
+
+        const updatedTaskDto = await updateTaskService(id, taskData);
 
         res.status(200).json({
             message: "Tarefa atualizada:",

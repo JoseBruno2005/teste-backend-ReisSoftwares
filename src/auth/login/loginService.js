@@ -27,8 +27,8 @@ export default async function loginService(email, password) {
         return token;
 
     } catch (error) {
-        console.error("Erro: ", error)
-        throw new Error("Erro ao fazer login!");
+        console.error(error)
+        throw new Error("Erro ao fazer login: " + error.message);
     }
 
 }
