@@ -11,7 +11,11 @@ git clone https://github.com/JoseBruno2005/teste-backend-ReisSoftwares.git
 
 #### 2º Acesse o diretório do projeto:
 
-cd teste-backend-ReisSoftwares
+A pasta raiz do projeto é: teste-backend-ReisSoftwares
+
+Caso por algum motivo, ao abrir o projeto você se localize em uma outra pasta execute o seguinte comando: 
+
+cd .\teste-backend-ReisSoftwares\
 
 #### 3º Instale as dependências:
 
@@ -28,14 +32,23 @@ Antes de rodar as migrations, é necessário criar um banco de dados PostgreSQL 
 
 A estrutura do banco foi definida utilizando o Prisma ORM, que também é responsável pela criação e gerenciamento dos models presentes no projeto. Após criar o banco, utilize os comandos abaixo para aplicar as migrations e gerar o Prisma Client:
 
-Execute as migrations e gere o Prisma Client:
+Após a criação do banco, entre na pasta src com o seguinte comando:
+
+cd .\src\
+
+Então, execute as migrations e gere o Prisma Client:
 
 npx prisma migrate dev
 
 npx prisma generate
 
 ### 3. Como executar
-Para iniciar o servidor localmente abra o terminal no projeto e digite o seguinte comando:
+
+Para inicial o servidor saia da pasta src com seguinte comando:
+
+cd ..
+
+agora na pasta raiz do projeto rode:
 
 node src/server.js
 
@@ -134,3 +147,5 @@ Swagger: documentação automática e interativa.
     Testes com Jest.
 
     Refatoração para NestJS.
+
+    Revisão dos códigos de status HTTP nas respostas para garantir que representem corretamente o resultado das requisições.
